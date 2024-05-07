@@ -1,6 +1,5 @@
 #' @export
-explore <- function (olapCnn, cube = NULL, dimension = NULL, hierarchy = NULL,
-    level = NULL) {
+explore <- function (olapCnn, cube = NULL, dimension = NULL, hierarchy = NULL, level = NULL) {
     if (!is.OlapConnection(olapCnn))
         stop("olapCnn must be of class 'OlapConnection'")
     if (!(is.null(cube) || is.character(cube)))
@@ -22,25 +21,27 @@ explore <- function (olapCnn, cube = NULL, dimension = NULL, hierarchy = NULL,
         if (d) {
             if (h) {
                 if (l) {
-                  result = .Call("olapRExploreMembers", olapCnn$cnn,
-                    cube, dimension, hierarchy, level, PACKAGE = "olapR")
+                  result <- .Call("olapRExploreMembers", olapCnn$cnn,
+                                  cube, dimension, hierarchy, level, PACKAGE = "olapR")
                 }
                 else {
-                  result = .Call("olapRExploreLevels", olapCnn$cnn,
-                    cube, dimension, hierarchy, PACKAGE = "olapR")
+                  result <- .Call("olapRExploreLevels", olapCnn$cnn,
+                                  cube, dimension, hierarchy, PACKAGE = "olapR")
                 }
             }
             else {
-                result = .Call("olapRExploreHierarchies", olapCnn$cnn,
-                  cube, dimension, PACKAGE = "olapR")
+                result <- .Call("olapRExploreHierarchies", olapCnn$cnn,
+                                cube, dimension, PACKAGE = "olapR")
             }
         }
         else {
-            result = .Call("olapRExploreDimensions", olapCnn$cnn,
-                cube, PACKAGE = "olapR")
+            result <- .Call("olapRExploreDimensions", olapCnn$cnn,
+                            cube, PACKAGE = "olapR")
         }
     }
     else {
-        result = .Call("olapRExploreCubes", olapCnn$cnn, cube, PACKAGE = "olapR")
+        result <- .Call("olapRExploreCubes", olapCnn$cnn, cube, PACKAGE = "olapR")
     }
+
+    return(result)
 }

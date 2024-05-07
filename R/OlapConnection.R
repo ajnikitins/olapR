@@ -28,11 +28,11 @@ OlapConnection <- function (connectionString = "Data Source=localhost; Provider=
     if (!is.character(connectionString) || is.null(connectionString)) {
         stop("cnn must be passed as a string")
     }
-    re1 = "Provider\\s*=\\s*MSOLAP;"
+    re1 <- "Provider\\s*=\\s*MSOLAP;"
     if (!any(grepl(re1, connectionString))) {
         warning("cnn must contain 'Provider=MSOLAP;'")
     }
-    re2 = "Data Source\\s*=\\s*[^;]*;"
+    re2 <- "Data Source\\s*=\\s*[^;]*;"
     if (!any(grepl(re2, connectionString))) {
         warning("cnn must contain 'Data Source=[a data source];'")
     }
